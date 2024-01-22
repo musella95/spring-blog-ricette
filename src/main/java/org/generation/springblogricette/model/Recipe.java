@@ -14,6 +14,8 @@ public class Recipe {
     private String title;
     @NotEmpty(message = "Ingredient must not be empty!")
     private String ingredient;
+    @Lob
+    @Column(length = 500)
     private String urlFoto;
     @NotEmpty(message = "time of preparation must not be empty!")
     private int timePrep;

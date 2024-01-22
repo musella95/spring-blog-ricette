@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/resources :: head('Recipe details')"></head>
+<body>
+<h1 class="text-center mt-3">Recipe <span th:text="${recipe.title}"></span> Details</h1>
+<main>
+    <div class="container">
+        <section>
+            <div class="card mt-5 mx-auto" style="width: 18rem;">
+                <img th:src="${recipe.urlFoto}" class="card-img-top" alt="recipe">
+
+                <div class="card-body ">
+                    <h5 class="card-title" th:text="${recipe.title}"></h5>
+                    <p class="card-text" th:text="${recipe.ingredient}"></p>
+                    <h5 class="card-title">Ingredients</h5>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title">time of prep</h5>
+                    <p class="card-text" th:text="|time of prep: ${recipe.timePrep} |"></p>
+                    <a th:href="@{/recipes}" class="btn btn-primary">Back to recipe</a>
+                    <a th:href="@{/recipes/edit/{id}(id=${recipe.id})}" class="btn btn-primary">Edit</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<th:block th:replace="fragments/resources :: script"></th:block>
+</body>
+</html>

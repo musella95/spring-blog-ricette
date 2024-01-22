@@ -23,17 +23,18 @@ public class RecipeController {
     public String index(Model model){
         List<Recipe> recipeList= recipeRepository.findAll();
         model.addAttribute("recipeList",recipeList);
-        return "/recipes/index";
+        return "/recipe/list";
     }
-    @GetMapping("/show/{id}")
+    @GetMapping("/show/{id}")///recipe/show/1
     public String show(@PathVariable Integer id, Model model) {
         Optional<Recipe> result = recipeRepository.findById(id);
         if (result.isPresent()) {
             Recipe recipe = result.get();
             model.addAttribute("recipe", recipe);
-            return "recipes/show";
+            return "recipe/show";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Recipe " + id + " not found");
         }
+
     }
 }
