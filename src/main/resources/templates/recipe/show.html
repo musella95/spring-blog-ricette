@@ -18,8 +18,10 @@
                 <div class="card-body">
                     <h5 class="card-title">time of prep</h5>
                     <p class="card-text" th:text="|time of prep: ${recipe.timePrep} |"></p>
+                    <p>Category: <span th:text="${recipe.category.getName()}"></span></p>
                     <a th:href="@{/recipes}" class="btn btn-primary">Back to recipe</a>
                     <a th:href="@{/recipes/edit/{id}(id=${recipe.id})}" class="btn btn-primary">Edit</a>
+
                 </div>
             </div>
         </section>

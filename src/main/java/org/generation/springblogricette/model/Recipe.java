@@ -1,7 +1,8 @@
 package org.generation.springblogricette.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "recipes")
@@ -9,29 +10,40 @@ import jakarta.validation.constraints.NotEmpty;
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @NotEmpty(message = "Title must not be empty!")
+    private Integer id;
+    @NotBlank(message = "Title must not be empty!")
     private String title;
-    @NotEmpty(message = "Ingredient must not be empty!")
+    @NotBlank(message = "Ingredient must not be empty!")
     private String ingredient;
     @Lob
     @Column(length = 500)
     private String urlFoto;
-    @NotEmpty(message = "time of preparation must not be empty!")
+    @NotNull(message = "time of preparation must not be empty!")
     private int timePrep;
-    @NotEmpty(message = "portion must not be empty!")
+    @NotNull(message = "portion must not be empty!")
     private int numberPortion;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public void setTitle(String title) {
@@ -70,15 +82,4 @@ public class Recipe {
         this.numberPortion = numberPortion;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Lob
-    @NotEmpty(message = "description must not be empty!")
-    private String description;
 }
